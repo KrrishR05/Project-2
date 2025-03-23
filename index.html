@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Content Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: green;
+      color: #fff;
+      padding: 30px 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .container {
+      background-color: #fff;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    select, input, button {
+      width: 90%;
+      padding: 12px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+  padding: 12px 25px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  
+}
+
+button:hover {
+  background-color: greenyellow;
+  transform: scale(1.1);
+  
+}
+
+#result {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 78, 80, 0.5);
+  color: #444;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+
+
+    footer {
+      background-color: green;
+      color: #fff;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    /* Mobile Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  button {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  select, input {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  #result {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+button, select, input {
+  box-sizing: border-box;
+}
+
+  </style>
+</head>
+
+<body>
+    <header>
+        <h1>✨ Content Generator ✨</h1>
+    </header>
+
+    <div class="container">
+        <h2>Generate AI-like Content</h2>
+        
+        <select id="contentType">
+            <option value="instagram">Instagram Caption</option>
+            <option value="blog">Blog Title Idea</option>
+            <option value="product">Product Description</option>
+        </select>
+
+        <input type="text" id="keyword" placeholder="Enter a keyword or topic">
+
+        <button onclick="generateContent()">Generate</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <footer>
+      <p>&copy; 2025 AI Content Generator | made by Krrish Raj</p>
+    </footer>
+    
+    <script>
+        const instagramCaptions = [
+            "Life is better with a little bit of {keyword} in it! 😎",
+            "Serving looks with {keyword} vibes only 😍",
+            "Chasing dreams and {keyword} goals...🔥",
+            "{keyword} is not just a trend, it's a lifestyle 💯",
+            "Let the {keyword} do the talking 💅 #StayWild"
+        ];
+
+        const blogIdeas = [
+            "Here Is Why {keyword} Will Dominate 2025",
+            "How {keyword} is Changing the Way We Live",
+            "The Ultimate Guide to Mastering {keyword}",
+            "What No One Tells You About {keyword}",
+            "Top 5 {keyword} Hacks You Need to Know"
+        ];
+
+        const productDescriptions = [
+            "Our premium {keyword} is designed to elevate your experience — quality meets elegance.",
+            "Experience comfort and style like never before with our exclusive {keyword}.",
+            "Crafted with precision, our {keyword} is the perfect addition to your collection.",
+            "Upgrade your lifestyle with our best-selling {keyword} — because you deserve the best.",
+            "Introducing the future of {keyword} — where innovation meets sophistication."
+        ];
+
+        function generateContent () {
+            const type = document.getElementById('contentType').value;
+            const keyword = document.getElementById('keyword').value.trim();
+            const result = document.getElementById('result');
+
+            if (keyword === '') {
+        result.innerHTML = "⚠️ Please enter a keyword!";
+        return;
+        }
+
+        let selectedArray;
+      if (type === 'instagram') selectedArray = instagramCaptions;
+      else if (type === 'blog') selectedArray = blogIdeas;
+      else if (type === 'product') selectedArray = productDescriptions;
+
+      const randomIndex = Math.floor(Math.random() * selectedArray.length);
+      const aiContent = selectedArray[randomIndex].replaceAll('{keyword}', keyword);
+
+      result.innerHTML = `<strong>Generated Content:</strong><br><br> ${aiContent}`;
+    }
+    </script>
+  
+</body>
+
+</html>
